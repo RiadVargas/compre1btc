@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>compre1bitcoin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="resources/style.css">
+  </head>
+  <body>
+    <div class="container">      
+      <h1 class="text-center">compre1bitcoin</h1>
+      <hr>
+      <div class="col-md-5">
+        <div class="row">
+          <div>
+            <div class="col-md-5 text-center">
+              <h2>Compre</h2>
+            </div>
+            <div class="col-md-5 col-md-offset-2 text-center">
+              <h2>Por</h2>
+            </div>
+          </div>
+          <div class="rates">
+            <div class="col-md-5 text-center btc">
+              <span><i class="glyphicon glyphicon-xbt"></i>1</span>
+            </div>
+            <div class="col-md-2 text-center">
+              <i class="glyphicon glyphicon-arrow-left"></i>
+            </div>
+            <div class="col-md-5 text-center brl">
+              <span id="buy-brl">...</span>
+            </div>
+          </div>  
+        </div>
+        <div class="row">
+          <a class="btn btn-default btn-lg btn-block" href="#">Buy now</a>  
+        </div>
+      </div>      
+      <div class="col-md-5 col-md-offset-2">
+        <div class="row">
+          <div>
+            <div class="col-md-5 text-center">
+              <h2>Venda</h2>
+            </div>
+            <div class="col-md-5 col-md-offset-2 text-center">
+              <h2>Por</h2>
+            </div>
+          </div>
+          <div class="rates">
+            <div class="col-md-5 text-center btc">
+              <span><i class="glyphicon glyphicon-xbt"></i>1</span>
+            </div>
+            <div class="col-md-2 text-center">
+              <i class="glyphicon glyphicon-arrow-right"></i>
+            </div>
+            <div class="col-md-5 text-center brl">
+              <span id="sell-brl">...</span>
+            </div>
+          </div>  
+        </div>
+        <div class="row">
+          <a class="btn btn-default btn-lg btn-block" href="#">Buy now</a>  
+        </div>
+      </div>      
+    </div>
+  </body>
+  <script src="resources/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>if (window.module) module = window.module;</script>
+  <script>
+    var socket  = new io();
+    socket.on('buy', function (data) {
+      $("#buy-brl").text(data.display);
+    });
+    socket.on('sell', function (data) {
+      $("#sell-brl").text(data.display);
+    });
+  </script>
+</html>

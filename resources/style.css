@@ -1,0 +1,38 @@
+html, body {
+	height: 100%;
+}
+body {
+	background: url(bg-black.png);
+}
+.container {
+	background: #FFF;
+	height: 100%;
+}
+.container h2 {
+	margin: 5px;
+}
+.row {
+	padding: 10px;
+}
+.rates div {
+	font-size: 25px;
+	line-height: 40px;
+	padding: 15px 0;
+}
+.rates div.btc {
+	background: #FF9900;
+	color: #FFF;
+	border-radius: 10px;
+	text-shadow: 1px 1px 1px #7B4A00;
+}
+.rates div.brl {
+	background: #27ae60;
+	color: #FFF;
+	border-radius: 10px;
+	text-shadow: 1px 1px 1px #115c31;
+}
+.rates .exchange .glyphicon {
+	padding: 0;
+	margin: 0;
+	line-height: 40px;
+}
