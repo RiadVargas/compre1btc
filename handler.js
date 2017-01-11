@@ -15,7 +15,7 @@ module.exports = {
 					console.log('[DEBUG] Error while trying to get cache, assuming it\'s empty.'); // Error when trying to locate or empty value, let's assume it's empty and
 					return module.exports.updatePrices(obj, socket); // Request the new round
 				}
-				if(!socket) return console.log('[DEBUG] Error when trying to access socket.');							
+				if(!socket) return console.log('[DEBUG] Error when trying to access socket.');				
 				if(value.round == obj.current_round) return false; // The round at API's server is the same cached, let's save some bandwidth
 				return module.exports.updatePrices(obj, socket); // Request the new round
 			});
@@ -28,7 +28,7 @@ module.exports = {
 		module.exports.updateSellPrice(obj, socket); // Call the function which gets the current price for sell 1BTC
 	},
 	updateBuyPrice: function(response, io) {
-		var obj, url, result, amount = 1, total, diff;
+		var obj, url, result, amount = 1, total;
 		for (var i = 0; i <= response.order_book_pages - 1; i++) { // Iterates with every order book page until get wanted amount filled
 			url     = "https://s3.amazonaws.com/data-production-walltime-info/production/dynamic/"+response.order_book_prefix+"_r"+response.current_round+"_p"+i+".json"; // Generates an URL to get data from the current round and page (i)
 			client.get(url, function (data) { // Makes the request using the generated URL
@@ -46,7 +46,7 @@ module.exports = {
 					}
 					else { // Else
 						amount    = math.subtract(amount, value[0]); // Subtract from the needed amount the current order quantity
-						total     = math.sum(total, value[1]); // Sum the our total with the order total
+						total     = math.sum(total, value[1]); // Sum current total with the order total
 					}
 					if(amount == 0) { // If we don't need more bitcoins
 						result     = { 
@@ -67,7 +67,7 @@ module.exports = {
 		}
 	},
 	updateSellPrice: function(response, io) {
-		var obj, url, result, amount = 1, total, diff;
+		var obj, url, result, amount = 1, total;
 		for (var i = 0; i <= response.order_book_pages - 1; i++) { // Iterates with every order book page until get the BTC solded
 			url     = "https://s3.amazonaws.com/data-production-walltime-info/production/dynamic/"+response.order_book_prefix+"_r"+response.current_round+"_p"+i+".json"; // Generates an URL to get data from the current round and page (i)
 			client.get(url, function (data) { // Makes the request using the generated URL
@@ -77,15 +77,15 @@ module.exports = {
 					return console.error('[DEBUG] JSON data empty, retrying ...');
 				}			
 				obj['brl-xbt'].some(function(value) {				
-					value[0] = math.eval(value[0]);
-					value[1] = math.eval(value[1]);
-					if(value[1] >= amount) {
-						total     = math.sum(total, math.multiply(math.divide(value[0], value[1]), amount));
-						amount    = 0;
+					value[0] = math.eval(value[0]); // Calculates the expression given by API to get the order total
+					value[1] = math.eval(value[1]); // Calculates the expression given by API to get the quantity
+					if(value[1] >= amount) { // If quantity is equal or bigger than the selling amount
+						total     = math.sum(total, math.multiply(math.divide(value[0], value[1]), amount)); // Sum current total and the part (quantity) of total value from the current buy order
+						amount    = 0; // We don't need to sell more bitcoins
 					}
 					else {
-						amount    = math.subtract(amount, value[1]);
-						total     = math.sum(total, value[0]);
+						amount    = math.subtract(amount, value[1]); // Subtract from the remaining amount the current order quantity
+						total     = math.sum(total, value[0]); // Sum current total with the order total
 					}
 					if(amount == 0) { // If we already solded a full BTC
 						result     = { 
