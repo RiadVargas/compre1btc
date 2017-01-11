@@ -12,6 +12,7 @@ h1 {
 }
 h1 img {
 	width: 100%;
+	max-width: 491px;
 }
 .container div.element {
 	border: 1px solid #DDD;
