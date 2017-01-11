@@ -15,7 +15,7 @@ module.exports = {
 					console.log('[DEBUG] Error while trying to get cache, assuming it\'s empty.'); // Error when trying to locate or empty value, let's assume it's empty and
 					return module.exports.updatePrices(obj, socket); // Request the new round
 				}
-				if(value.round == obj.current_round) return console.log('[DEBUG] Same round, skipping.'); // The round at API's server is the same cached, let's save some bandwidth
+				if(value.round == obj.current_round) return false; // The round at API's server is the same cached, let's save some bandwidth
 				return module.exports.updatePrices(obj, socket); // Request the new round
 			});
 		}).on('error', function (err) {
@@ -67,7 +67,6 @@ module.exports = {
 	},
 	updateSellPrice: function(response, io) {
 		var obj, url, result, amount = 1, total, diff;
-		console.log(io);
 		for (var i = 0; i <= response.order_book_pages - 1; i++) { // Iterates with every order book page until get the BTC solded
 			url     = "https://s3.amazonaws.com/data-production-walltime-info/production/dynamic/"+response.order_book_prefix+"_r"+response.current_round+"_p"+i+".json"; // Generates an URL to get data from the current round and page (i)
 			client.get(url, function (data) { // Makes the request using the generated URL
