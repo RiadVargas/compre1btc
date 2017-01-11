@@ -4,7 +4,7 @@ var port 		= 80,
     io 			= require('socket.io'),
     handler		= require('./handler.js'),
     web 		= express(),
-	listen 		= web.listen(port), // Make express listen to the assigned port
+	listen 		= web.listen(port), // Set express listening to the assigned port
 	io 			= io(listen); // Use the same port as express to recieve socket.io connections
 
 console.log('[DEBUG] Setting up the environment ...');
