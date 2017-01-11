@@ -8,8 +8,14 @@ body {
 	background: #FFF;
 	height: 100%;
 }
+.container > div {
+	border: 1px solid #DDD;
+	box-shadow: 5px 5px 0px #DDD;
+	border-radius: 10px;
+}
 .container h2 {
 	margin: 5px;
+	font-size: 25px;
 }
 .row {
 	padding: 10px;
