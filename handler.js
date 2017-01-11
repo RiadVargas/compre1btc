@@ -15,6 +15,7 @@ module.exports = {
 					console.log('[DEBUG] Error while trying to get cache, assuming it\'s empty.'); // Error when trying to locate or empty value, let's assume it's empty and
 					return module.exports.updatePrices(obj, socket); // Request the new round
 				}
+				if(!socket) return console.log('[DEBUG] Error when trying to access socket.');							
 				if(value.round == obj.current_round) return false; // The round at API's server is the same cached, let's save some bandwidth
 				return module.exports.updatePrices(obj, socket); // Request the new round
 			});
@@ -61,7 +62,7 @@ module.exports = {
 				});
 			}).on('error', function (err) {
 				console.log('[DEBUG] Something happened ...', err.request.options); // Handles with error and console it
-			});
+			});			
 			break;
 		}
 	},
