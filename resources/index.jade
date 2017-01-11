@@ -65,15 +65,28 @@
     </div>
   </body>
   <script src="resources/jquery.min.js"></script>
+  <script src="resources/numeral.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>if (window.module) module = window.module;</script>
   <script>
     var socket  = new io();
+    numeral.register('locale', 'pt-BR', {
+        delimiters: {
+            thousands: '.',
+            decimal: ','
+        },        
+        currency: {
+            symbol: 'R$'
+        }
+    });
+    numeral.locale('pt-BR');
     socket.on('buy', function (data) {
-      $("#buy-brl").text(data.display);
+      data.price = numeral(data.price).format('$0,0.00');
+      $("#buy-brl").text(data.price);
     });
     socket.on('sell', function (data) {
-      $("#sell-brl").text(data.display);
+      data.price = numeral(data.price).format('$0,0.00');
+      $("#sell-brl").text(data.price);
     });
   </script>
 </html>

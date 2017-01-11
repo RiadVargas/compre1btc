@@ -89,8 +89,7 @@ function updatePrice(response) {
 					result     = { 
 						price: total, 
 						timestamp: obj.timestamp, 
-						round: response.current_round, 
-						display: total.toLocaleString("pt-BR", {style: "currency", currency: 'BRL'}),
+						round: response.current_round, 						
 						date: new Date(obj.timestamp)
 					};
 					priceCache.set('buy', result);
@@ -117,7 +116,6 @@ function updatePrice(response) {
 						price: total, 
 						timestamp: obj.timestamp, 
 						round: response.current_round, 
-						display: total.toLocaleString("pt-BR", {style: "currency", currency: 'BRL'}),
 						date: new Date(obj.timestamp)
 					};
 					priceCache.set('sell', result);
