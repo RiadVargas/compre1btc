@@ -6,7 +6,7 @@ var client = require('node-rest-client').Client,
     math   = require('mathjs'),
     cache = require( "node-cache" );
 
-var port = 8080;
+var port = 80;
 console.log('[DEBUG] Setting up the environment ...');
 var app = express(),
 	listen = app.listen(port),
