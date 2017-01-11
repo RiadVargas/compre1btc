@@ -55,7 +55,7 @@ module.exports = {
 							round: response.current_round // Current round UID
 						};
 						priceCache.set('buy', result); // Cache all the informations we got
-						io.sockets.emit('update', result); // Broadcast an update to all connected socket.io users
+						io.sockets.emit('buy', result); // Broadcast an update to all connected socket.io users
 						console.log('[DEBUG] [BUY] [R%d] [%d] New round arrived.', result.round, result.price);
 						return true;
 					}
