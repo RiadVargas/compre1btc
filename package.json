@@ -1,13 +1,11 @@
 {
-  "name": "compre1bitcoin",
+  "name": "compre1btc",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project developed for evaluation purposes",
   "main": "index.js",
-  "author": "",
-  "license": "ISC",
+  "author": "Riad Vargas de Oliveira",
   "dependencies": {
     "express": "^4.14.0",
-    "handlebars": "^4.0.5",
     "mathjs": "^3.8.1",
     "node-cache": "^4.1.1",
     "node-rest-client": "^2.0.1",
