@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>compre1bitcoin</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" type="text/css" href="resources/style.css">
   </head>
   <body>
@@ -44,7 +44,6 @@
     <script src="resources/jquery.min.js"></script>
     <script src="resources/numeral.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script>if (window.module) module = window.module;</script>
     <script>
       var socket  = new io();
       numeral.register('locale', 'pt-BR', {
@@ -58,12 +57,12 @@
       });
       numeral.locale('pt-BR');
       socket.on('buy', function (data) {
-        data.price = numeral(data.price).format('$0,0.00');
-        $("#buy-brl").text(data.price);
+        data.price = numeral(data.price).format('$0,0.00'); // Converts the current buy price to numeral and format it
+        $("#buy-brl").text(data.price); // Replaces the old price with the new one
       });
       socket.on('sell', function (data) {
-        data.price = numeral(data.price).format('$0,0.00');
-        $("#sell-brl").text(data.price);
+        data.price = numeral(data.price).format('$0,0.00'); // Converts the current sell price to numeral and format it
+        $("#sell-brl").text(data.price); // Replaces the old price with the new one
       });
     </script>
   </body>    
