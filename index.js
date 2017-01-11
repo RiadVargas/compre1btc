@@ -11,10 +11,6 @@ console.log('[DEBUG] Setting up the environment ...');
 console.log('[DEBUG] Application is listening to %d', port);
 console.log('[DEBUG] Retrieving the initial data');
 handler.retrieveData(io); // Collect the initial data, store in cache and broadcast to all connected users
-console.log('[DEBUG] Estabilishing timed update');
-setInterval(function() {
-	handler.retrieveData(io); // Contact the API verifying if there is a new round
-}, 5000); // Every 5 seconds
 
 /*
 	================== socket.io
@@ -35,3 +31,8 @@ web.get('/resources/:script', function(request, response) { // Redirect all requ
   	var html = fs.readFileSync("./resources/"+request.params.script); // Load the file requested
   	response.end(html); // Returns a response for the user's request
 });
+
+console.log('[DEBUG] Estabilishing timed update');
+setInterval(function() {
+	handler.retrieveData(io); // Contact the API verifying if there is a new round
+}, 5000); // Every 5 seconds
