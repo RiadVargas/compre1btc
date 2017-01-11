@@ -17,6 +17,13 @@ setInterval(function() {
 }, 5000); // Every 5 seconds
 
 /*
+	================== socket.io
+*/
+io.on('connection', function(socket){ // Executes the callback whenever a new socket.io connection is made
+	handler.emitCache(socket); // Retrieve stored price cache and broadcast to the new user
+});
+
+/*
 	================== Express
 */
 web.set('view engine', 'ejs');
@@ -27,11 +34,4 @@ web.get('/', function(request, response) {
 web.get('/resources/:script', function(request, response) { // Redirect all request made to /resources to the respective file
   	var html = fs.readFileSync("./resources/"+request.params.script); // Load the file requested
   	response.end(html); // Returns a response for the user's request
-});
-
-/*
-	================== socket.io
-*/
-io.on('connection', function(socket){ // Executes the callback whenever a new socket.io connection is made
-	handler.emitCache(socket); // Retrieve stored price cache and broadcast to the new user
 });
