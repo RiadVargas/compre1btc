@@ -7,61 +7,38 @@
     <link rel="stylesheet" type="text/css" href="resources/style.css">
   </head>
   <body>
-    <div class="container">      
-      <h1 class="text-center">compre1bitcoin</h1>
-      <hr>
-      <div class="element col-md-5">
-        <div class="row">
-          <div>
-            <div class="col-md-5 col-sm-5 text-center">
-              <h2>Buy</h2>
-            </div>
-            <div class="col-md-5 col-sm-5 col-md-offset-2 col-sm-offset-2 text-center">
-              <h2>For</h2>
-            </div>
-          </div>
-          <div class="rates">
-            <div class="col-md-5 col-sm-5 text-center btc">
-              <span><i class="glyphicon glyphicon-xbt"></i>1</span>
-            </div>
-            <div class="col-md-2 col-sm-2 text-center">
-              <i class="glyphicon glyphicon-arrow-left"></i>
-            </div>
-            <div class="col-md-5 col-sm-5 text-center brl">
-              <span id="buy-brl">...</span>
-            </div>
-          </div>  
+    <div class="container col-md-8 col-md-offset-2">      
+      <h1 class="text-center">
+        <img src="resources/logo.png" alt="compre1bitcoin">
+      </h1>
+      <div class="row header">
+        <div class="col-md-5 col-sm-5 text-center">
+          <h2>You want to buy?</h2>  
         </div>
-        <div class="row">
-          <a class="btn btn-default btn-lg btn-block" href="#">Buy now</a>  
+        <div class="col-md-5 col-sm-5 col-md-offset-2 col-sm-offset-2 text-center">
+          <h2>Or sell?</h2>
         </div>
-      </div>      
-      <div class="element col-md-5 col-md-offset-2">
-        <div class="row">
-          <div>
-            <div class="col-md-5 col-sm-5 text-center">
-              <h2>Sell</h2>
-            </div>
-            <div class="col-md-5 col-sm-5 col-md-offset-2 col-sm-offset-2 text-center">
-              <h2>For</h2>
-            </div>
-          </div>
-          <div class="rates">
-            <div class="col-md-5 col-sm-5 text-center btc">
-              <span><i class="glyphicon glyphicon-xbt"></i>1</span>
-            </div>
-            <div class="col-md-2 col-sm-2 text-center">
-              <i class="glyphicon glyphicon-arrow-right"></i>
-            </div>
-            <div class="col-md-5 col-sm-5 text-center brl">
-              <span id="sell-brl">...</span>
-            </div>
-          </div>  
+      </div>   
+      <div class="row rates">
+        <div class="element col-md-5 col-sm-5 text-center btc">
+          <h2><i class="glyphicon glyphicon-xbt"></i>1</h2>
+          <hr>
+          <h3 id="buy-brl">
+            ...
+          </h3>
+          <hr>
+          <a class="btn btn-default btn-lg" href="#">Buy now</a>  
         </div>
-        <div class="row">
-          <a class="btn btn-default btn-lg btn-block" href="#">Sell now</a>  
+        <div class="element col-md-5 col-sm-5 col-md-offset-2 col-sm-offset-2 text-center brl">
+          <h2><i class="glyphicon glyphicon-xbt"></i>1</h2>
+          <hr>
+          <h3 id="sell-brl">
+            ...
+          </h3>
+          <hr>
+          <a class="btn btn-default btn-lg" href="#">Sell now</a>  
         </div>
-      </div>      
+      </div>
     </div>
   </body>
   <script src="resources/jquery.min.js"></script>

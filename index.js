@@ -1,7 +1,6 @@
 var client = require('node-rest-client').Client,
     fs = require('fs'),
     express = require('express'),
-    handlebars = require('handlebars'),
     io = require('socket.io'),
     math   = require('mathjs'),
     cache = require( "node-cache" );
@@ -23,14 +22,11 @@ setInterval(function() {
 
 app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
-  var index = fs.readFileSync('./resources/index.jade'),
+  	var index 		= fs.readFileSync('./resources/index.jade'),
   		source      = index.toString('utf8'),
-      	template    = handlebars.compile(source),
-      	context     = priceCache.get('price'),
       	order_book  = {},
       	round, obj, url;
-  var html    = template(context);
-  res.end(html);
+  res.end(source);
 });
 app.get('/resources/:script', function(req, res) {
   	var html = fs.readFileSync("./resources/"+req.params.script);
